@@ -1,0 +1,13 @@
+[Unit]
+Description=iEdon PeerAPI Agent Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/iedon/peerapi-agent/
+ExecStart=/usr/bin/python3 /iedon/peerapi-agent/peerapi-agent.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
