@@ -144,7 +144,7 @@ async def add(payload):
     data = payload["data"]
     port = jwt_decode(data["passthrough"])["port"]
 
-    if type != 'wireguard':
+    if type != 'wireguard' or peerCredential == None:
         return False
 
     mp_bgp = True if 'mp-bgp' in extensions else False
@@ -158,7 +158,7 @@ async def add(payload):
 
     wgConf = wgConf.replace('<%__IPV4__%>', VAR_IPV4)
     wgConf = wgConf.replace('<%__PEER_PUBLIC_KEY__%>', peerCredential)
-    wgConf = wgConf.replace('<%__PEER_ENDPOINT__%>', peerEndpoint)
+    wgConf = wgConf.replace('<%__PEER_ENDPOINT__%>', f'Endpoint = {peerEndpoint}' if peerEndpoint != None else '')
     wgConf = wgConf.replace('<%__PORT__%>', str(port))
     wgPostUp = ''
     if peerIpv4 != None:
