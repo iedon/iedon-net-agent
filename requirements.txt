@@ -1,5 +1,5 @@
 PyJWT===2.1.0
 asyncio
 aiohttp
-aiofiles
+aiofiles===0.8.0
 uvloop
