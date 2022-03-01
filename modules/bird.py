@@ -167,12 +167,12 @@ async def add(payload):
         wgConf = wgConf.replace('<%__IPV6__%>', VAR_IPV6_LINK_LOCAL)
         if peerIpv4 != None:
             wgPostUp += ' && '
-        wgPostUp += f'ip addr del dev {interface} {VAR_IPV6_LINK_LOCAL}/64 && ip addr add dev {interface} {VAR_IPV6_LINK_LOCAL}/64 peer {peerIpv6LinkLocal}/64'
+        wgPostUp += f'ip addr del dev {interface} {VAR_IPV6_LINK_LOCAL}/128 && ip addr add dev {interface} {VAR_IPV6_LINK_LOCAL}/128 peer {peerIpv6LinkLocal}/128'
     elif peerIpv6 != None:
         wgConf = wgConf.replace('<%__IPV6__%>', VAR_IPV6)
         if peerIpv4 != None:
             wgPostUp += ' && '
-        wgPostUp += f'ip addr del dev {interface} {VAR_IPV6}/64 && ip addr add dev {interface} {VAR_IPV6}/64 peer {peerIpv6}/64'
+        wgPostUp += f'ip addr del dev {interface} {VAR_IPV6}/128 && ip addr add dev {interface} {VAR_IPV6}/128 peer {peerIpv6}/128'
     wgConf = wgConf.replace('<%__POSTUP__%>', wgPostUp)
     wgConf = wgConf.replace('<%__IPV6__%>', VAR_IPV6) # Default ipv6
 
